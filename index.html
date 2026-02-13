@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive research report examining AI tutoring effectiveness comparing replacement versus augmentation models in higher education, with evidence-based recommendations for student learning centers.">
+    <meta name="author" content="Jesse J. Rogers">
+    <title>AI Tutoring: A Comparison of Replacement vs Augmentation Models</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* AAA compliant colors - 7:1 contrast ratio minimum */
+            --pbsc-blue: #002855;
+            --pbsc-blue-light: #003d7a;
+            --pbsc-green: #006b42;
+            --pbsc-gold: #c08600;
+            --page-bg: #f5f5f5;
+            --dark-text: #000000;
+            --light-text: #ffffff;
+            --subtle-text: #4a4a4a;
+            --border-color: #cccccc;
+            --focus-color: #005a9c;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--page-bg);
+            color: var(--dark-text);
+            line-height: 1.8;
+        }
+
+        /* Skip to main content link for keyboard navigation */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--pbsc-blue);
+            color: var(--light-text);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 9999;
+            border-radius: 0 0 4px 0;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 4px solid var(--pbsc-gold);
+            outline-offset: 2px;
+        }
+
+        /* Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--pbsc-blue) 0%, #001a3a 100%);
+            color: var(--light-text);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 40, 85, 0.3);
+            border-bottom: 6px solid var(--pbsc-gold);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        /* Main content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+        }
+
+        /* Abstract/Summary */
+        .abstract {
+            background-color: #f9f9f9;
+            border-left: 6px solid var(--pbsc-green);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        /* Section styling */
+        section {
+            margin: 3rem 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--pbsc-blue);
+            margin: 2.5rem 0 1.5rem 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--pbsc-green);
+            line-height: 1.4;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--pbsc-blue);
+            margin: 2rem 0 1rem 0;
+            line-height: 1.4;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--pbsc-blue);
+            font-weight: 600;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--pbsc-green);
+        }
+
+        a:focus-visible {
+            outline: 4px solid var(--focus-color);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        /* Lists */
+        ul {
+            margin: 1rem 0 1rem 2rem;
+            list-style-type: disc;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Strong/Bold text */
+        strong {
+            font-weight: 700;
+            color: var(--pbsc-blue);
+        }
+
+        /* Emphasis */
+        em {
+            font-style: italic;
+        }
+
+        /* Horizontal rule */
+        hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 3rem 0;
+        }
+
+        /* References section */
+        .references {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 4px solid var(--pbsc-blue);
+        }
+
+        .references h2 {
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        .references p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pbsc-blue);
+            color: var(--light-text);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 6px solid var(--pbsc-gold);
+        }
+
+        footer p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--pbsc-gold);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer a:focus-visible {
+            outline: 4px solid var(--light-text);
+            outline-offset: 4px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            main {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            a {
+                text-decoration-thickness: 2px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .skip-link {
+                display: none;
+            }
+
+            .page-header {
+                background: white;
+                color: black;
+                border-bottom: 4px solid black;
+            }
+
+            main {
+                max-width: 100%;
+            }
+
+            a {
+                color: black;
+                text-decoration: underline;
+            }
+
+            a[href^="http"]:after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+            }
+        }
+
+        /* Large text zoom support */
+        @media (min-width: 1400px) {
+            html {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="page-header" role="banner">
+        <h1>AI Tutoring: A Comparison of Replacement vs Augmentation Models</h1>
+        <p class="subtitle">Research Report for Student Learning Center Leadership</p>
+        <p class="subtitle">Jesse J. Rogers, Palm Beach State College</p>
+    </header>
+
+    <main id="main-content" role="main">
+        
+        <div class="abstract" role="doc-abstract">
+            <p><strong>Executive Summary:</strong> The emerging evidence is clear: AI tutoring systems that augment human tutors consistently produce positive learning outcomes, while AI systems that fully replace human intermediaries show a troubling pattern of short-term gains masking long-term learning harm. Across seven major randomized controlled trials and four meta-analyses published between 2024 and 2025, the dividing line between effective and harmful AI tutoring is not the sophistication of the AI model—it is whether pedagogical guardrails and human oversight are present. For Student Learning Center leadership, this means the strategic question is not whether to adopt AI but how to design hybrid models that preserve what human tutors do best while leveraging AI's scalability and cost advantages.</p>
+        </div>
+
+        <section aria-labelledby="landmark-heading">
+            <h2 id="landmark-heading">The landmark studies that frame the debate</h2>
+            
+            <p>Three RCTs published in 2025 form the empirical backbone of this field, and their findings pull in seemingly opposite directions—until you examine the design details.</p>
+
+            <p><strong>The Harvard physics study</strong> (Kestin et al., 2025, Scientific Reports) delivered the most dramatic positive result. In a crossover RCT with 194 undergraduates, a custom GPT-4-based tutor called "PS2 Pal" produced learning gains more than double those of active learning classrooms taught by experienced instructors, with an effect size of 0.73 to 1.3 standard deviations. Students using the AI tutor also reported higher engagement, higher motivation, and completed their work in less time. Fully 83% of students rated the AI tutor's explanations as good as or better than human instructors.</p>
+
+            <p><strong>The Wharton/Penn mathematics study</strong> (Bastani et al., 2025, PNAS) delivered the most important cautionary finding. In a pre-registered RCT with roughly 1,000 high school math students in Turkey, three conditions were compared: raw ChatGPT-4 ("GPT Base"), a guardrailed version with Socratic prompting and teacher-provided solutions ("GPT Tutor"), and a no-AI control. During AI-assisted practice, GPT Base improved scores by 48% and GPT Tutor by 127% over control. But on subsequent unassisted exams, the GPT Base group performed 17% worse than students who never used AI at all. The guardrailed GPT Tutor group showed no significant difference from control—harm was mitigated but no positive transfer was achieved. Chat log analysis revealed the mechanism: students in the raw GPT condition routinely asked "What is the answer?" and copied solutions. They did not perceive their own reduced learning.</p>
+
+            <p><strong>The Google DeepMind/Eedi study</strong> (Groot et al., 2025, arXiv) tested a middle path. In an RCT with 165 UK secondary students, Google's LearnLM—a generative AI fine-tuned for pedagogy and supervised by human tutors—matched human tutors on misconception resolution and produced a 5.5 percentage point advantage on knowledge transfer to novel problems. The supervised AI hallucinated in only 0.1% of messages, and human tutors approved 76% of AI-generated responses with zero or minimal edits.</p>
+
+            <p>The pattern across these three studies is consistent: a bespoke, pedagogically engineered AI tutor with expert-crafted content (Harvard) produced exceptional results; a raw LLM without guardrails (Wharton GPT Base) actively harmed learning; and a supervised AI with human oversight (DeepMind) matched or slightly exceeded human-only tutoring. <strong>The variable that matters is design, not raw AI capability.</strong></p>
+        </section>
+
+        <section aria-labelledby="augmentation-heading">
+            <h2 id="augmentation-heading">Augmentation models show the strongest and most consistent evidence</h2>
+            
+            <p>The most compelling evidence for institutional adoption comes not from AI replacing tutors but from AI making human tutors more effective. Stanford's <strong>Tutor CoPilot</strong> RCT (Wang et al., 2024) is the landmark study here. In a trial with 900 tutors and 1,800 K-12 students from Title I schools, an AI system provided real-time pedagogical suggestions to human tutors during live sessions. Students of CoPilot-equipped tutors were 4 percentage points more likely to master math topics. The most striking finding: students of lower-rated tutors saw a 9 percentage point gain in mastery—essentially closing the gap between novice and expert tutors. The system cost approximately $20 per tutor annually, compared to $3,300+ for traditional professional development programs.</p>
+
+            <p>A year-long quasi-experimental study from Carnegie Mellon and Stanford (Gurung et al., 2025, AIED Conference) compared human-AI hybrid tutoring against AI-only tutoring with 670+ middle school students from socioeconomically disadvantaged backgrounds. The human-AI group finished 0.36 grade levels ahead by year's end. A critical finding emerged: human tutors enhanced the benefits of AI tutors, with gains increasing with time-on-task.</p>
+
+            <p>The World Bank's Nigeria RCT (2024/2025) tested a teacher-guided AI tutoring model across 9 public schools with 800 secondary students. Students interacted with GPT-4 in pairs while trained teachers served as "orchestra conductors," guiding interactions, identifying hallucinations, and preventing over-reliance. The treatment group scored 0.31 standard deviations higher overall—equivalent to roughly 1.5 to 2 years of typical learning gains in just six weeks. This was rated among the most cost-effective education interventions globally.</p>
+
+            <p>These augmentation studies share a common design principle: AI handles content delivery and practice at scale while humans provide metacognitive coaching, motivational support, quality control, and the relational glue that keeps students engaged.</p>
+        </section>
+
+        <section aria-labelledby="crutch-heading">
+            <h2 id="crutch-heading">Raw LLM access creates a "crutch effect" that undermines learning</h2>
+            
+            <p>The failure modes of replacement models are now well-documented across multiple independent studies. The central phenomenon—<strong>cognitive offloading</strong>—occurs when students delegate thinking to the AI rather than engaging in the productive struggle that produces genuine learning.</p>
+
+            <p>Beyond the Bastani et al. finding that raw GPT-4 reduced exam performance by 17%, corroborating evidence is accumulating. A study at Corvinus University Budapest (Benedek & Sziklai, 2025) found that when university students were given unrestricted AI access in an operations research course, adoption was virtually universal but learning collapsed. One student submitted an exam containing solutions to other students' problems plus "a considerable amount of gibberish"—having fed the entire exam to an AI and copied the output without reading it.</p>
+
+            <p>The cognitive science evidence reinforces these findings. Studies have documented decreased cognitive activity, lower self-reported ownership in LLM-assisted work, and significantly lower cognitive engagement during AI-assisted academic tasks. The emerging picture is that <strong>students do not perceive their own reduced learning</strong>—the Bastani study found that GPT Base users believed they learned just as much as the control group, creating an "illusion of competence" that may be one of AI tutoring's most insidious risks.</p>
+
+            <p>A subject-specific pattern is also emerging. AI tutoring shows its strongest results in structured, procedural STEM domains—physics, algebra, grammar—where answers can be verified and scaffolding follows clear logical steps. Evidence is weakest or negative for writing, humanities, and advanced problem-solving where open-ended reasoning, interpretation, and argumentation are central.</p>
+        </section>
+
+        <section aria-labelledby="khanmigo-heading">
+            <h2 id="khanmigo-heading">What Khanmigo and institutional pilots actually show</h2>
+            
+            <p>Despite being the most prominent AI tutoring platform with 700,000+ student users across 380+ district partners, Khanmigo's evidence base is surprisingly thin. The single quasi-experimental study (Slijepcevic & Yaylali, 2025) tested 69 undergraduates and found no statistically significant differences in learning outcomes between Khanmigo, Google search, and paper-only conditions. Students viewed Khanmigo positively as a supplementary tool but not a replacement for instruction.</p>
+
+            <p>The strongest institutional evidence comes from Georgia State University, where an RCT of course-integrated AI chatbots (Page, 2022) found that treatment students were 16% more likely to earn a B or higher, first-generation students saw final grades 11 points higher (more than a full letter grade), and Pell-eligible students were 29% less likely to earn a D or F. Georgia State's $7.6 million TEACH ME grant (2024) is now deploying AI chatbots in gateway math and English courses across GSU, Morgan State, and UCF, with independent evaluation from scholars at Brown, Harvard, Stanford, and Brookings.</p>
+
+            <p>The California Community Colleges system has launched a system-wide pilot across all 118 campuses using Nectir AI assistants with faculty-controlled guardrails. Early data from a smaller pilot at Los Angeles Pacific University showed a 0.23 GPA point increase for active AI tutor users, with the strongest effects for lower-performing students. However, <strong>community college–specific AI tutoring outcome data remains essentially absent from the published literature</strong>—a critical gap given that these institutions serve the students who may benefit most but are also most vulnerable to potential harms.</p>
+        </section>
+
+        <section aria-labelledby="cost-heading">
+            <h2 id="cost-heading">Cost, scalability, and realistic benchmarks</h2>
+            
+            <p>The cost argument for AI tutoring is compelling on its face. Human tutoring at university learning centers costs an estimated $25–80 per hour per student interaction when accounting for wages, training, space, and supervision. AI tutoring platforms range from $10–60 per month per student for unlimited access. Stanford's Tutor CoPilot demonstrated that the augmentation approach can be delivered for roughly $20 per tutor per year—a fraction of any alternative.</p>
+
+            <p>However, the "5% problem" complicates purely economic projections. Research consistently finds that only about 5% of students use AI tutoring programs at recommended dosages when participation is voluntary. Khan Academy reported that only 9% of students reached the recommended 30+ minutes per week threshold. This means per-student cost calculations based on platform pricing dramatically understate the true cost-per-engaged-learner.</p>
+
+            <p>Institutional decision-makers should also recalibrate expectations around Bloom's "two sigma" benchmark—the claim that 1:1 tutoring raises performance by 2 standard deviations. Critical analysis has established that this figure was based on two unpublished dissertations with questionable methods and has never been independently replicated. Rigorous meta-analyses place human tutoring effects at 0.37 to 0.79 SD—meaningful but far below 2.0. AI tutoring effects in meta-analyses range from 0.32 to 0.87 SD depending on the study design and comparison condition. The realistic benchmark for an excellent AI tutoring implementation is an effect size in the 0.3–0.8 range—which would still represent a substantial and scalable improvement.</p>
+        </section>
+
+        <section aria-labelledby="framework-heading">
+            <h2 id="framework-heading">A framework for learning center decision-making</h2>
+            
+            <p>The evidence points toward a tiered implementation model that matches intervention intensity to student need and task complexity:</p>
+
+            <p><strong>Tier 1 (AI-first, human-monitored):</strong> Structured practice in procedural STEM subjects, 24/7 availability for routine questions, study skill tips, and initial assessment/triage. AI operates with Socratic guardrails—never giving direct answers—and course-specific content grounding. Human staff monitor aggregate patterns and intervene on flagged cases.</p>
+
+            <p><strong>Tier 2 (AI-augmented human tutoring):</strong> Human tutors equipped with AI copilot tools for real-time pedagogical suggestions, particularly valuable for peer tutors and less experienced staff. This tier has the strongest RCT evidence (Stanford Tutor CoPilot) and the most favorable cost profile.</p>
+
+            <p><strong>Tier 3 (Human-led, AI-informed):</strong> Complex conceptual work, writing and humanities support, motivational coaching, and culturally responsive engagement delivered by trained human tutors with AI providing background analytics on student progress and common misconceptions.</p>
+
+            <p>Three critical design principles emerge from the research:</p>
+
+            <ul>
+                <li><strong>AI must never give direct answers</strong>—every successful AI tutoring implementation enforces Socratic interaction, while every documented failure mode traces back to students obtaining and copying answers.</li>
+                <li><strong>Structured integration outperforms voluntary access</strong> by an enormous margin; embedding AI tutoring into course requirements, assignment workflows, and scheduled check-ins is essential to overcoming the 5% adoption problem.</li>
+                <li><strong>Equity monitoring must be built in from day one</strong>—while early evidence suggests AI can be especially beneficial for lower-performing students and first-generation students, an emerging "AI literacy divide" may widen gaps if institutions do not provide training, access, and culturally responsive design.</li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="gaps-heading">
+            <h2 id="gaps-heading">What we still don't know</h2>
+            
+            <p>The current evidence base, while growing rapidly, has substantial gaps that should temper institutional confidence:</p>
+
+            <ul>
+                <li><strong>No study has tracked AI tutoring outcomes beyond one year.</strong> Whether AI tutoring gains persist, compound, or fade remains unknown.</li>
+                <li><strong>Almost no rigorous studies involve actual college or university students as the primary population.</strong> Most RCT evidence comes from K-12 settings.</li>
+                <li><strong>Community college students are almost entirely absent from the evidence base</strong> despite being the population where tutoring access matters most and where AI's scalability could have the greatest impact.</li>
+                <li><strong>Subject coverage is heavily skewed toward math and STEM;</strong> evidence for writing, humanities, and social sciences at the college level is minimal.</li>
+                <li><strong>Professional tutoring organizations (CRLA, NCLCA, ATP) have not yet issued AI-specific guidelines,</strong> creating both a vacuum and an opportunity for institutions developing frameworks now.</li>
+            </ul>
+
+            <p>The field is also contending with publication and reporting bias: platform vendors report their own data, which tends to emphasize satisfaction and engagement metrics rather than causal learning outcomes, and the most widely cited positive results come from highly controlled research settings that may not generalize to the realities of institutional deployment.</p>
+        </section>
+
+        <section aria-labelledby="conclusion-heading">
+            <h2 id="conclusion-heading">Conclusion</h2>
+            
+            <p>The evidence converges on a clear strategic direction: <strong>augmentation substantially outperforms replacement</strong>, and the gap between the two approaches is driven by design choices, not AI capability. The most effective models keep humans in the loop—whether as copiloted tutors receiving AI suggestions (Stanford), as supervisors monitoring AI-generated responses (DeepMind/Eedi), or as session facilitators guiding student-AI interactions (World Bank Nigeria). These augmentation approaches consistently benefit the students and tutors who need the most help, closing quality gaps between novice and expert tutors and disproportionately improving outcomes for lower-performing and first-generation students.</p>
+
+            <p>The clearest danger is not that AI tutoring fails to work—it is that <strong>unguarded AI access creates an illusion of learning</strong> while actually degrading independent problem-solving ability. Students who use raw LLMs as tutoring crutches perform worse when the AI is removed and do not recognize their own diminished learning. This cognitive offloading risk makes guardrail design and human oversight not optional features but foundational requirements.</p>
+
+            <p>For learning center leadership, the immediate opportunity is low-risk, high-evidence augmentation: equipping existing peer tutors with AI copilot tools, extending hours through guardrailed AI chatbots for structured subjects, and building assessment infrastructure to track outcomes by student population. The most impactful investment is not in the AI system itself—it is in the pedagogical design, integration architecture, and human oversight model that determine whether AI becomes a force multiplier or a learning crutch. Institutions that move now to develop these frameworks will shape emerging professional standards; those that wait for the evidence to mature may find that their students have already made the choice to use unguarded AI on their own terms.</p>
+        </section>
+
+        <section class="references" aria-labelledby="references-heading">
+            <h2 id="references-heading">References</h2>
+
+            <p>Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakçı, Ö., & Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. <em>Proceedings of the National Academy of Sciences, 122</em>(1), e2422633122. <a href="https://doi.org/10.1073/pnas.2422633122">https://doi.org/10.1073/pnas.2422633122</a></p>
+
+            <p>Benedek, M., & Sziklai, B. R. (2025). Impact of AI tools on learning outcomes: Decreasing knowledge and over-reliance. <em>Corvinus Economics Working Papers</em>. <a href="https://arxiv.org/html/2510.16019v1">https://arxiv.org/html/2510.16019v1</a></p>
+
+            <p>Georgiou, Y. (2025). The cognitive paradox of AI in education: Between enhancement and erosion. <em>Frontiers in Psychology, 16</em>, 1550621. <a href="https://doi.org/10.3389/fpsyg.2025.1550621">https://doi.org/10.3389/fpsyg.2025.1550621</a></p>
+
+            <p>Groot, E., Cassidy, S., Benton, L., Towers, R., Koedinger, K., Ritter, S., & Drigas, M. (2025). AI tutoring can safely and effectively support students: An exploratory RCT in UK classrooms. <em>arXiv preprint</em>. <a href="https://arxiv.org/html/2512.23633v1">https://arxiv.org/html/2512.23633v1</a></p>
+
+            <p>Gurung, A., Yang, D., Chopra, A., Motz, B., & Stump, G. S. (2025). In study of human-AI tutoring with U.S. seventh graders, human tutors enhanced the benefits of AI tutors. Carnegie Mellon University Heinz College. <a href="https://www.heinz.cmu.edu/media/2025/September/in-study-of-human-ai-tutoring-with-us-seventh-graders-human-tutors-enhanced-the-benefits-of-ai-tutors">https://www.heinz.cmu.edu/media/2025/September/in-study-of-human-ai-tutoring-with-us-seventh-graders-human-tutors-enhanced-the-benefits-of-ai-tutors</a></p>
+
+            <p>Kestin, G., Miller, K., McCarty, L., Deslauriers, L., Ho, A., Liu, J., & Hu, H. (2025). AI tutoring outperforms in-class active learning: An RCT introducing a novel research-based design in an authentic educational setting. <em>Scientific Reports, 15</em>, 1296. <a href="https://doi.org/10.1038/s41598-025-97652-6">https://doi.org/10.1038/s41598-025-97652-6</a></p>
+
+            <p>Khan Academy. (2024, November). Khan Academy efficacy results, November 2024. Khan Academy Blog. <a href="https://blog.khanacademy.org/khan-academy-efficacy-results-november-2024/">https://blog.khanacademy.org/khan-academy-efficacy-results-november-2024/</a></p>
+
+            <p>Page, L. C. (2022). Classroom chatbot improves student performance, study says. Georgia State University News. <a href="https://news.gsu.edu/2022/03/21/classroom-chatbot-improves-student-performance-study-says/">https://news.gsu.edu/2022/03/21/classroom-chatbot-improves-student-performance-study-says/</a></p>
+
+            <p>Slijepcevic, S., & Yaylali, E. (2025). Leveraging "Khanmigo" generative AI-powered tool for personalized tutoring to learn scientific concepts. <em>Journal of Teaching and Learning, 19</em>(1). <a href="https://doi.org/10.22329/jtl.v19i1.7927">https://doi.org/10.22329/jtl.v19i1.7927</a></p>
+
+            <p>von Hippel, P. T. (2024). Two-sigma tutoring: Separating science fiction from science fact. <em>Education Next, 24</em>(4). <a href="https://www.educationnext.org/two-sigma-tutoring-separating-science-fiction-from-science-fact/">https://www.educationnext.org/two-sigma-tutoring-separating-science-fiction-from-science-fact/</a></p>
+
+            <p>Wang, R., Demszky, D., & Koedinger, K. R. (2024). Tutor CoPilot: A human-AI approach for scaling real-time expertise. <em>EdWorkingPapers.com</em>. <a href="https://edworkingpapers.com/sites/default/files/ai24_1054_v2.pdf">https://edworkingpapers.com/sites/default/files/ai24_1054_v2.pdf</a></p>
+
+            <p>World Bank. (2024). Addressing the learning crisis with generative AI: Lessons from Edo State in Nigeria. <em>World Bank Blogs</em>. <a href="https://blogs.worldbank.org/en/developmenttalk/addressing-the-learning-crisis-with-generative-ai--lessons-from-">https://blogs.worldbank.org/en/developmenttalk/addressing-the-learning-crisis-with-generative-ai--lessons-from-</a></p>
+
+            <p>World Bank. (2025). From chalkboards to chatbots: Transforming learning in Nigeria, one prompt at a time. <em>World Bank Blogs</em>. <a href="https://blogs.worldbank.org/en/education/From-chalkboards-to-chatbots-Transforming-learning-in-Nigeria">https://blogs.worldbank.org/en/education/From-chalkboards-to-chatbots-Transforming-learning-in-Nigeria</a></p>
+        </section>
+
+    </main>
+
+    <footer role="contentinfo">
+        <p><strong>Jesse J. Rogers</strong><br>
+        Learning Lab Coordinator, Palm Beach State College<br>
+        Email: <a href="mailto:rogersjj@pbsc.edu">rogersjj@pbsc.edu</a></p>
+        <p>© 2026 Palm Beach State College</p>
+    </footer>
+
+</body>
+</html>
